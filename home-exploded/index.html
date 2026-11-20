@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="전기차 배터리팩을 층층이 펼친 분해도로, 수명을 다한 배터리가 어떤 순서로 해체되고 재제조·재사용·재활용되는지 정리한 학생 연구.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b3f8c">
+<title>RE:CELL 14 — 다 쓴 배터리팩은 어떻게 풀리는가</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">본문 바로가기</a>
+
+<header>
+  <div class="wrap hd">
+    <a class="brand" href="/" aria-label="RE:CELL 14 홈"><svg viewBox="0 0 26 30" aria-hidden="true"><rect x="3" y="5" width="20" height="24" rx="3" fill="none" stroke="#0b3f8c" stroke-width="2.4"/><rect x="9" y="1" width="8" height="4" rx="1" fill="#0b3f8c"/><path d="M8 19a5 5 0 1 0 2-6" fill="none" stroke="#d9611a" stroke-width="2.2"/><path d="M8 11v3h3" fill="none" stroke="#d9611a" stroke-width="2.2"/></svg><span><b>RE:CELL 14</b><span>폐배터리 활용방안 연구</span></span></a>
+    <button class="menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="mainNav">메뉴</button>
+    <nav class="main" id="mainNav" aria-label="주 메뉴">
+      <a href="/about">소개</a><a href="/anatomy">해부도</a><a href="/topics#paths">처리 경로</a><a href="/topics#support">지원 기술</a><a href="/topics#eval">평가</a><a href="/topics#design">설계</a><a href="/lab">실험실</a><a href="/references">참고문헌</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ① 히어로: 배터리팩 분해도 -->
+<section class="hero" aria-labelledby="hT">
+  <div class="wrap">
+    <div class="herohead">
+      <div>
+        <p class="label">폐배터리 활용방안 · 학생 연구</p>
+        <h1 id="hT">다 쓴 배터리팩은 어떤 순서로 풀리는가</h1>
+      </div>
+      <div>
+        <p class="lead">전기차 배터리팩 하나에는 열 가지가 넘는 부품이 겹겹이 들어 있습니다. 위층부터 걷어 내야 모듈에 닿고, 모듈을 꺼내야 재제조 · 재사용 · 재활용 중 하나를 고를 수 있습니다.</p>
+        <div class="btns"><a class="btn pri" href="#process">재활용 과정 보기</a><a class="btn sec" href="/topics">14개 주제</a></div>
+      </div>
+    </div>
+
+    <figure class="xfig">
+      <div class="xstage" id="xstage">
+        <svg id="xsvg" role="img" aria-labelledby="xcap"></svg>
+        <ol class="xlabels" id="xlabels" aria-label="부품 11개"></ol>
+      </div>
+      <div class="xbar">
+        <div class="xctl">
+          <button type="button" id="xplay" aria-pressed="false">해체 순서 재생</button>
+          <button type="button" id="xprev" aria-label="이전 해체 단계">←</button>
+          <span id="xstepno" aria-hidden="true">0 / 8</span>
+          <button type="button" id="xnext" aria-label="다음 해체 단계">→</button>
+        </div>
+        <p id="xstatus" aria-live="polite"></p>
+        <div class="xctl"><button type="button" id="xreset">처음으로</button></div>
+      </div>
+      <figcaption id="xcap">전기차 배터리팩 분해도 (직접 그림). 부품 구성과 설명은 Klohs 외(2023)의 배터리팩 분해도를 따랐습니다 <a class="cite" href="#s9">[9]</a>. 실제 팩은 차종마다 모듈 수와 배치가 다릅니다.</figcaption>
+    </figure>
+
+    <div class="facts" role="list">
+      <div class="fact" role="listitem"><b>2,355<em>→</em>107,500<small>개</small></b><p>국내 사용후 배터리 배출량, 2023년 실적과 2030년 전망 <a class="cite" href="#s1">[1]</a></p></div>
+      <div class="fact" role="listitem"><b>2027.5.27</b><p>「사용후 배터리의 관리 및 산업육성에 관한 법률」 시행. 떼기 전 성능평가와 안전검사를 받아야 합니다 <a class="cite" href="#s1">[1]</a><a class="cite" href="#s2">[2]</a></p></div>
+      <div class="fact" role="listitem"><b>50%<em>→</em>80%</b><p>EU가 정한 폐배터리 리튬 회수 목표, 2027년 말과 2031년 말 <a class="cite" href="#s3">[3]</a></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ② 재활용 8단계 -->
+<section class="sec" id="process" aria-labelledby="pT">
+  <div class="wrap">
+    <div class="sechead">
+      <div><p class="label">재활용 과정</p><h2 id="pT">회수부터 새 양극재까지 여덟 단계</h2></div>
+      <p>위 분해도의 해체는 넷째 단계입니다. 재사용하기 어려운 배터리가 원료로 돌아가는 습식 재활용의 순서를 단계별로 고르거나 ← → 키로 넘겨 보세요. 각 단계에 실제 기업의 공개 사례와 출처를 달았습니다.</p>
+    </div>
+    <ol class="flow" id="flow" role="tablist" aria-label="재활용 단계"></ol>
+    <div class="stepbox" id="stepBox" role="tabpanel" aria-live="polite"></div>
+    <div class="stepnav"><button type="button" id="stepPrev">← 이전 단계</button><button type="button" id="stepNext">다음 단계 →</button></div>
+  </div>
+</section>
+
+<!-- ③ 처리 경로 -->
+<section class="sec" id="routes" aria-labelledby="rT">
+  <div class="wrap">
+    <div class="sechead">
+      <div><p class="label">처리 경로</p><h2 id="rT">남은 용량이 길을 정합니다</h2></div>
+      <p>꺼낸 모듈은 먼저 잔존용량(SOH)을 잽니다. 결과에 따라 아래 세 갈래 중 하나로 갑니다. 기준값은 제조사와 용도마다 달라 여기서는 숫자를 정하지 않았습니다.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="처리 경로" id="routeTabs"></div>
+    <div class="route" id="routePanel" role="tabpanel"></div>
+  </div>
+</section>
+
+<!-- ④ 14개 주제 -->
+<section class="sec" id="topics" aria-labelledby="tT">
+  <div class="wrap">
+    <div class="sechead">
+      <div><p class="label">14개 주제</p><h2 id="tT">네 가지 질문으로 나눈 열네 주제</h2></div>
+      <p>무엇을 할 것인가, 무엇이 있어야 가능한가, 좋은지 어떻게 판단하는가, 애초에 어떻게 만들 것인가. 주제마다 따로 페이지가 있습니다.</p>
+    </div>
+    <table class="topics" id="topicTable"><caption class="vh">주제 묶음별 목록</caption><tbody></tbody></table>
+  </div>
+</section>
+
+<!-- ⑤ 실험실 -->
+<section class="sec" id="lab" aria-labelledby="lT">
+  <div class="wrap">
+    <div class="sechead">
+      <div><p class="label">실험실</p><h2 id="lT">읽은 것을 작은 장치로 확인했습니다</h2></div>
+      <p>재사용 배터리 ESS의 과열 감지를 ESP32 축소 모형으로 재 봤습니다. 실제 배터리 대신 220Ω 저항을 데웠고, 이 기준값은 모형에 맞춘 것이라 실제 ESS에 그대로 쓸 수 없습니다.</p>
+    </div>
+    <div class="lab">
+      <div class="timeline">
+        <h3>LAB 01 · 히터를 켠 뒤 판정이 바뀐 시각</h3>
+        <p class="sub">판정 2회차 실측, 0.5초마다 판정 <a class="cite" href="#s8">[8]</a></p>
+        <div class="track" role="img" aria-label="0초 히터 켬, 11.0초 주의, 27.1초 경고, 65.3초 위험 판정과 자동 차단">
+          <div class="bar"></div>
+          <div class="mk" style="left:0%"><i></i><span><b>0.0초</b> 켬</span></div>
+          <div class="mk" style="left:16.8%"><i></i><span><b>11.0초</b> 주의</span></div>
+          <div class="mk" style="left:41.5%"><i></i><span><b>27.1초</b> 경고</span></div>
+          <div class="mk end" style="left:100%"><i></i><span><b>65.3초</b> 차단</span></div>
+        </div>
+        <div class="axis" aria-hidden="true"><span style="left:0.0%">0</span><span style="left:30.6%">20</span><span style="left:61.3%">40</span><span style="left:91.9%">60초</span></div>
+        <div class="labkeys">
+          <div><b>54초</b><span>위험 기준보다 먼저 울린 첫 경보</span></div>
+          <div><b>616/616</b><span>PC에 도착한 기록 패킷 (Wi-Fi 끊김 2회 포함)</span></div>
+          <div><b>3회</b><span>발열 반복 실험. 통계적 결론에는 적은 횟수</span></div>
+        </div>
+      </div>
+      <div class="labside">
+        <a class="labitem" href="/lab/ess-monitoring"><span class="tag">LAB 01 · 실측</span><h3>ESS 상태진단 실험</h3><p>저항을 데워 셀 과열을 흉내 내고, ESP32가 감지 · 경보 · 차단하는지 측정했습니다. 원자료 CSV 7개를 함께 올렸습니다.</p><span class="go">기록 보기 →</span></a>
+        <a class="labitem" href="/lab/virtual-esp32"><span class="tag">LAB 02 · 모의실험</span><h3>가상 ESP32 실험대</h3><p>LAB 01 실측값으로 맞춘 가상 장치입니다. 부품과 핀을 바꾸고, 환경을 바꾸며 판정을 직접 돌려 볼 수 있습니다.</p><span class="go">실험대 열기 →</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ 출처 -->
+<section class="sec" id="sources" aria-labelledby="sT">
+  <div class="wrap">
+    <div class="sechead">
+      <div><p class="label">이 페이지의 출처</p><h2 id="sT">숫자와 부품 설명은 모두 출처가 있습니다</h2></div>
+      <p>기업 수치는 각 기업이 직접 발표한 값입니다. 전체 목록은 <a href="/references">참고문헌</a> 페이지에 있습니다.</p>
+    </div>
+    <ol class="refs">
+      <li id="s1">법무법인(유한) 태평양 (2026.11.16). 「사용후배터리법」 시행을 앞둔 하위법령 쟁점과 우리 기업의 대응 과제. BKL Legal Update. 배출량은 산업통상부 보도자료(2026.5.21)에 인용된 정부 추정치. <a href="https://www.bkl.co.kr/law/insight/newsletter/6861" rel="noopener">원문</a></li>
+      <li id="s2">산업통상부 (2026.5.21). 사용후 배터리 안전 관리체계 도입으로 배터리 순환 생태계 구축. 보도자료. <a href="https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/171852/view" rel="noopener">원문</a></li>
+      <li id="s3">EUR-Lex. Summary: Sustainability rules for batteries and waste batteries — Regulation (EU) 2023/1542. <a href="https://eur-lex.europa.eu/EN/legal-content/summary/sustainability-rules-for-batteries-and-waste-batteries.html" rel="noopener">원문</a></li>
+      <li id="s4">ZVEI (2019). Shipping of lithium-ion batteries — flow chart for packing instructions (SP 376/P908, SP 377/P909). <a href="https://www.zvei.org/fileadmin/user_upload/Verband/Fachverbaende/Elektrowerkzeuge/Neue_Merkblaetter_zum_Transport_von_Lithium-Ionen-Batterien/ZVEI-MB-Versand-von-Ionen-Lithium-Batterien-English-Final-20-09-2019.pdf" rel="noopener">원문</a></li>
+      <li id="s5">시대 (2021.6.25). 성일하이텍 군산 습식2공장 — 용매 추출 기술로 국내 폐배터리 재활용 선두. <a href="https://www.sidae.com/article/2021062513158043181" rel="noopener">원문</a></li>
+      <li id="s6">Innovation News Network. Li-Cycle: Sustainable lithium-ion battery recycling technology. <a href="https://www.innovationnewsnetwork.com/?p=21097" rel="noopener">원문</a></li>
+      <li id="s7">Umicore. The R&amp;D journey behind Umicore's unique approach to battery recycling (기업 발표). <a href="https://www.umicore.com/en/newsroom/the-rd-journey-behind-umicores-unique-approach-to-battery-recycling/" rel="noopener">원문</a></li>
+      <li id="s8">RE:CELL 14 실험실 (2026.11). LAB 01 ESS 상태진단 실험 — 판정 · 차단 실측 타임라인, 통신 결과. <a href="/lab/ess-monitoring">기록 보기</a></li>
+      <li id="s9">Klohs, D., Offermanns, C., Heimes, H., Kampker, A. (2023). Automated Battery Disassembly — Examination of the Product- and Process-Related Challenges for Automotive Traction Batteries. <i>Recycling</i> 8(6), 89. CC BY 4.0. 분해도의 부품 구성 · 설명과 해체 공정의 어려움(커버 개방, 케이블 · 커넥터 제거, 차종별 다양성). <a href="https://doi.org/10.3390/recycling8060089" rel="noopener">원문</a></li>
+    </ol>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap fgrid">
+    <div>
+      <h4>학생 과제물 · 비영리 교육 목적</h4>
+      <p>폐배터리 리사이클링 기술 조사 과제를 웹으로 재구성했습니다. 언급된 기업과 관련이 없으며, 기업명은 사실 서술을 위해서만 썼고 로고는 쓰지 않았습니다.</p>
+      <p>분해도는 논문 그림을 참고해 코드로 직접 그렸습니다. 기업 발표 수치는 자체 발표 기준입니다.</p>
+      <p style="margin-top:12px">© 2026 RE:CELL 14 · Battery Recycling Research Project</p>
+    </div>
+    <div>
+      <h4>바로가기</h4>
+      <div class="fnav"><a href="/about">사이트 소개</a><a href="/anatomy">해부도</a><a href="/topics">14개 주제</a><a href="/lab">실험실</a><a href="/references">참고문헌</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- 순서 중요: iso(그리기 도구) → parts(데이터) → exploded(분해도) → home(나머지 섹션) -->
+<script src="js/iso.js"></script>
+<script src="data/parts.js"></script>
+<script src="js/exploded.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

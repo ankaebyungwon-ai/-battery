@@ -45,6 +45,7 @@ assets/lab3d.js      BMS 3D 회로
 tools/               페이지 생성기 (아래 참고)
 docs/references.md   모든 출처와 내용 요약
 vercel.json          깔끔한 주소 설정
+home-exploded/       새 메인 홈 시안 — 배터리팩 분해도 (따로 README 있음)
 ```
 
 ## 내용 고치기

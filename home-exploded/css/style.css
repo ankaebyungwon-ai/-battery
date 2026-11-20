@@ -1,0 +1,263 @@
+/*
+ * style.css — RE:CELL 14 메인 홈
+ *
+ * VOICE   담백한 기술 보고서 — 결론 먼저, 꾸밈 없이, 모든 숫자에 출처
+ * IDEA    논문 속 분해도: 층층이 띄운 배터리팩 + 좌우 설명 상자 + 지시선
+ * COLOUR  흰 바탕 · 잉크 #0f172a · 남색 #0b3f8c 하나
+ *         주황 #d9611a는 고전압선과 '선택됨' 표시에만 (실제 고전압 배선 관례)
+ * TYPE    IBM Plex Sans KR, 숫자는 IBM Plex Mono
+ *
+ * 목차
+ *   1. 기본값      2. 헤더       3. 히어로 · 분해도
+ *   4. 숫자 3개    5. 공정 8단계  6. 처리 경로
+ *   7. 14개 주제   8. 실험실      9. 출처 · 푸터
+ */
+
+/* ── 1. 기본값 ───────────────────────────────── */
+:root {
+  color-scheme: light;
+  --bg: #ffffff; --panel: #f3f5f8; --ink: #0f172a; --mute: #4b5565; --line: #d9dee6;
+  --navy: #0b3f8c; --navy-2: #e8eef8; --hv: #d9611a; --hv-2: #fdf0e7;
+}
+* { box-sizing: border-box; min-width: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16.5px/1.65 "IBM Plex Sans KR", system-ui, sans-serif;
+  word-break: keep-all; overflow-wrap: break-word;   /* 한국어가 낱말 중간에서 끊기지 않게 */
+  overflow-x: clip; -webkit-font-smoothing: antialiased;
+}
+a { color: var(--navy); }
+p { margin: 0; }
+h1, h2, h3 { margin: 0; line-height: 1.15; text-wrap: balance; letter-spacing: -.015em; }
+h1 { font-size: clamp(32px, 4vw, 46px); font-weight: 700; }
+h2 { font-size: clamp(24px, 2.6vw, 30px); font-weight: 700; }
+h3 { font-size: 18px; font-weight: 600; }
+.mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-feature-settings: "tnum"; }
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 max(4vw, 16px); }
+:focus-visible { outline: 3px solid var(--hv); outline-offset: 2px; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: #fff; padding: 10px 14px; z-index: 99; }
+.skip:focus { left: 12px; }
+.sec { padding: clamp(56px, 7vw, 96px) 0; border-top: 1px solid var(--line); }
+.sechead { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px; align-items: end; margin-bottom: 32px; }
+.sechead p { color: var(--mute); max-width: 62ch; }
+.label { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+.cite { font: 600 12px "IBM Plex Mono", monospace; color: var(--navy); text-decoration: none; vertical-align: 2px; margin-left: 2px; }
+.cite:hover { text-decoration: underline; }
+@media (max-width: 860px) { .sechead { grid-template-columns: 1fr; } }
+
+/* ── 2. 헤더 ─────────────────────────────────── */
+header { position: sticky; top: 0; z-index: 20; background: rgba(255, 255, 255, .95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.hd { display: flex; align-items: center; gap: 24px; min-height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); flex: none; }
+.brand svg { width: 26px; height: 30px; }
+.brand b { font: 600 17px "IBM Plex Mono", monospace; letter-spacing: .02em; }
+.brand span { font-size: 12px; color: var(--mute); display: block; line-height: 1.2; }
+nav.main { margin-left: auto; display: flex; gap: 2px; }
+nav.main a { color: var(--ink); text-decoration: none; font-size: 15px; padding: 8px 11px; border-radius: 6px; }
+nav.main a:hover { background: var(--panel); }
+.menu { display: none; margin-left: auto; min-height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: 6px; background: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+@media (max-width: 1000px) {
+  .menu { display: block; }
+  nav.main { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; padding: 8px max(4vw, 16px) 16px; }
+  nav.main.open { display: flex; }
+  nav.main a { padding: 12px 4px; border-bottom: 1px solid var(--line); border-radius: 0; }
+}
+
+/* ── 3. 히어로 · 분해도 ──────────────────────── */
+.hero { padding: clamp(28px, 4vw, 48px) 0 clamp(40px, 5vw, 64px); }
+.herohead { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 16px 48px; align-items: end; }
+.herohead .lead { font-size: 17.5px; color: #334155; max-width: 52ch; }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.btn { display: inline-flex; align-items: center; min-height: 46px; padding: 0 20px; border-radius: 6px; font-weight: 600; font-size: 15.5px; text-decoration: none; border: 1px solid var(--navy); }
+.btn.pri { background: var(--navy); color: #fff; }
+.btn.pri:hover { background: #08316e; }
+.btn.sec { color: var(--navy); background: #fff; }
+.btn.sec:hover { background: var(--navy-2); }
+@media (max-width: 860px) { .herohead { grid-template-columns: 1fr; } }
+
+.xfig { margin: clamp(20px, 3vw, 32px) 0 0; }
+.xfig figcaption { font-size: 13px; color: var(--mute); margin-top: 10px; }
+
+/* 그림 + 설명 상자를 겹치는 무대. 넓은 화면(.wide)에서만 상자가 그림 위 절대 위치 */
+.xstage { position: relative; }
+.xstage svg { display: block; width: 100%; height: auto; }
+.ly { transition: opacity .3s; }
+.xstage.sel .ly { opacity: .22; }
+.xstage .ly.gone { opacity: .06; }
+.xstage .ly.on { opacity: 1; }
+.lead { stroke: #94a3b8; stroke-width: 1.3; transition: stroke .2s; }
+.lead.on { stroke: var(--hv); stroke-width: 2; }
+.badge { cursor: pointer; }
+.badge circle { transition: fill .2s; }
+.badge.on circle { fill: var(--hv); }
+
+.xlabels { list-style: none; margin: 0; padding: 0; }
+.xl { font-size: 13.5px; line-height: 1.5; color: #334155; }
+.xl button {
+  font: inherit; color: var(--ink); background: none; border: 0; padding: 0; cursor: pointer; text-align: left;
+  display: flex; gap: 10px; align-items: flex-start; width: 100%; min-height: 32px;
+}
+.xl .no {
+  flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: #fff;
+  display: grid; place-items: center; font: 600 12.5px "IBM Plex Mono", monospace; margin-top: 1px;
+}
+.xl .nm { font-weight: 600; font-size: 15px; line-height: 1.35; }
+.xl .nm small { display: block; font-weight: 400; font-size: 12px; color: var(--mute); font-family: "IBM Plex Mono", monospace; }
+.xl p { margin: 4px 0 0 34px; }
+.xl .cut { color: var(--navy); font-size: 13px; }
+.xl .cut::before { content: "해체 · 재활용 "; font-weight: 600; }
+.xl button:hover .nm { color: var(--navy); }
+.xl.on .no { background: var(--hv); }
+.xl.on .nm { color: var(--hv); }
+
+.xstage.wide .xl {
+  position: absolute; padding: 10px 12px 12px; background: rgba(255, 255, 255, .92);
+  border: 1px solid var(--line); border-radius: 8px; transition: border-color .2s, box-shadow .2s;
+}
+.xstage.wide .xl.on { border-color: var(--hv); box-shadow: 0 0 0 1px var(--hv); }
+.xstage.wide.sel .xl:not(.on) { color: #64748b; }
+
+/* 좁은 화면: 조작부를 그림 바로 아래로 올리고, 상자는 그 아래 목록으로 */
+.xfig { display: flex; flex-direction: column; }
+.xstage:not(.wide) { display: contents; }
+.xstage:not(.wide) .xlabels { order: 3; }
+.xfig figcaption { order: 4; }
+.xstage:not(.wide) .xlabels { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; margin-top: 16px; border-top: 1px solid var(--line); padding-top: 16px; }
+@media (max-width: 620px) { .xstage:not(.wide) .xlabels { grid-template-columns: 1fr; } }
+
+/* 해체 순서 조작부 */
+.xbar {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px 20px; align-items: center;
+  border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; margin-top: 16px; background: var(--panel);
+}
+.xctl { display: flex; gap: 6px; align-items: center; }
+.xctl button {
+  font: inherit; font-weight: 600; font-size: 14.5px; min-height: 44px; padding: 0 14px;
+  border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--ink); cursor: pointer;
+}
+.xctl button:hover:not(:disabled) { border-color: var(--navy); color: var(--navy); }
+.xctl button:disabled { color: #a3acb9; cursor: not-allowed; }
+#xplay { background: var(--navy); color: #fff; border-color: var(--navy); min-width: 132px; }
+#xplay:hover { background: #08316e; color: #fff; }
+#xplay[aria-pressed=true] { background: var(--hv); border-color: var(--hv); }
+#xstepno { font: 600 13px "IBM Plex Mono", monospace; color: var(--mute); padding: 0 6px; white-space: nowrap; }
+#xstatus { font-size: 14.5px; color: #334155; min-height: 3em; align-self: center; }
+#xstatus .cutnote { color: var(--navy); }
+#xreset { justify-self: end; }
+@media (max-width: 860px) {
+  .xbar { grid-template-columns: 1fr; }
+  #xreset { justify-self: start; }
+}
+
+/* ── 4. 숫자 3개 ─────────────────────────────── */
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 8px; margin-top: clamp(32px, 4vw, 48px); }
+.fact { padding: 20px 22px; }
+.fact + .fact { border-left: 1px solid var(--line); }
+.fact b { display: block; font: 600 clamp(24px, 2.6vw, 32px)/1.15 "IBM Plex Mono", monospace; letter-spacing: -.02em; white-space: nowrap; }
+.fact b em { font-style: normal; color: var(--mute); font-size: .6em; margin: 0 6px; }
+.fact b small { font-size: .55em; margin-left: 4px; }
+.fact p { font-size: 14.5px; color: #334155; margin-top: 6px; }
+@media (max-width: 760px) { .facts { grid-template-columns: 1fr; } .fact + .fact { border-left: 0; border-top: 1px solid var(--line); } }
+
+/* ── 5. 공정 8단계 ───────────────────────────── */
+.flow { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; position: relative; }
+.flow::before { content: ""; position: absolute; left: 6%; right: 6%; top: 21px; height: 2px; background: var(--line); }
+.flow li { position: relative; text-align: center; }
+.flow button { font: inherit; background: none; border: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; padding: 0 4px 8px; color: var(--ink); min-height: 44px; }
+.flow .dot { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--line); background: #fff; display: grid; place-items: center; font: 600 14px "IBM Plex Mono", monospace; color: var(--mute); position: relative; z-index: 1; transition: border-color .2s, background .2s, color .2s; }
+.flow .t { font-size: 14px; line-height: 1.35; }
+.flow button:hover .dot { border-color: #9aa6b8; }
+.flow li.done .dot { border-color: var(--navy); color: var(--navy); }
+.flow button[aria-selected=true] .dot { background: var(--hv); border-color: var(--hv); color: #fff; }
+.flow button[aria-selected=true] .t { font-weight: 600; }
+.stepbox { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); border: 1px solid var(--line); border-radius: 8px; margin-top: 20px; overflow: hidden; }
+.stepmain { padding: 24px 26px; }
+.stepmain .n { font: 600 13px "IBM Plex Mono", monospace; color: var(--hv); }
+.stepmain h3 { font-size: 22px; margin: 6px 0 10px; }
+.stepmain p { color: #334155; max-width: 60ch; }
+.stepside { background: var(--panel); padding: 24px 26px; border-left: 1px solid var(--line); display: grid; gap: 14px; align-content: start; margin: 0; }
+.stepside dt { font-size: 13px; font-weight: 600; color: var(--mute); }
+.stepside dd { margin: 2px 0 0; font-size: 15px; }
+.stepnav { display: flex; justify-content: space-between; gap: 10px; margin-top: 14px; }
+.stepnav button { font: inherit; font-weight: 600; min-height: 44px; padding: 0 16px; border: 1px solid var(--line); border-radius: 6px; background: #fff; cursor: pointer; color: var(--ink); }
+.stepnav button:hover:not(:disabled) { border-color: var(--navy); color: var(--navy); }
+.stepnav button:disabled { color: #a3acb9; cursor: not-allowed; background: var(--panel); }
+@media (max-width: 900px) {
+  .flow { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 14px; }
+  .flow::before { display: none; }
+  .stepbox { grid-template-columns: 1fr; }
+  .stepside { border-left: 0; border-top: 1px solid var(--line); }
+}
+@media (max-width: 420px) { .flow .t { font-size: 12.5px; } }
+
+/* ── 6. 처리 경로 ────────────────────────────── */
+.tabs { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; padding: 3px; gap: 3px; background: var(--panel); flex-wrap: wrap; }
+.tabs button { font: inherit; font-weight: 600; font-size: 15px; min-height: 42px; padding: 0 18px; border: 0; border-radius: 6px; background: transparent; color: var(--mute); cursor: pointer; }
+.tabs button[aria-selected=true] { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(15, 23, 42, .12); }
+.route { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(20px, 3vw, 40px); margin-top: 20px; align-items: start; }
+.route h3 { font-size: 22px; margin-bottom: 8px; }
+.route p { color: #334155; }
+.route ul { margin: 14px 0 0; padding-left: 1.1em; color: #334155; display: grid; gap: 6px; }
+.route aside { border-left: 3px solid var(--navy); padding: 4px 0 4px 18px; }
+.route aside b { display: block; font-size: 13px; color: var(--mute); font-weight: 600; }
+.route aside p { margin: 2px 0 14px; font-size: 15px; }
+@media (max-width: 860px) { .route { grid-template-columns: 1fr; } }
+
+/* ── 7. 14개 주제 ────────────────────────────── */
+.topics { width: 100%; border-collapse: collapse; font-size: 15.5px; }
+.topics th, .topics td { text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.topics th { width: 26%; font-weight: 600; }
+.topics th small { display: block; font-weight: 400; color: var(--mute); font-size: 13.5px; margin-top: 2px; }
+.topics td ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.topics td a { text-decoration: none; color: var(--ink); display: inline-flex; gap: 8px; align-items: baseline; min-height: 32px; }
+.topics td a:hover b { color: var(--navy); text-decoration: underline; }
+.topics td a span { font: 500 12.5px "IBM Plex Mono", monospace; color: var(--mute); }
+.topics td b { font-weight: 500; }
+@media (max-width: 700px) {
+  .topics tr { display: block; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+  .topics th { display: block; width: auto; border-bottom: 0; padding-bottom: 4px; }
+  .topics td { display: block; padding-top: 4px; border-bottom: 0; }
+}
+
+/* ── 8. 실험실 ───────────────────────────────── */
+.lab { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(20px, 3vw, 40px); }
+.timeline { border: 1px solid var(--line); border-radius: 8px; padding: 22px 24px; }
+.timeline h3 { margin-bottom: 4px; }
+.timeline .sub { color: var(--mute); font-size: 14px; margin-bottom: 26px; }
+.track { position: relative; height: 56px; margin: 0 8px; }
+.track .bar { position: absolute; left: 0; right: 0; top: 26px; height: 6px; border-radius: 3px; background: linear-gradient(90deg, #cbd5e1 0 16.8%, #e9c46a 16.8% 41.5%, #e07a3b 41.5% 100%); }
+.mk { position: absolute; top: 0; transform: translateX(-50%); text-align: center; }
+.mk i { display: block; width: 2px; height: 38px; margin: 0 auto; background: var(--ink); }
+.mk span { position: absolute; top: 42px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 13px; }
+.mk b { font: 600 13px "IBM Plex Mono", monospace; }
+.mk.end span { left: auto; right: 0; transform: none; }
+.axis { position: relative; height: 16px; font: 500 12px "IBM Plex Mono", monospace; color: var(--mute); margin: 30px 8px 0; }
+.axis span { position: absolute; transform: translateX(-50%); }
+.labkeys { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 22px; border-top: 1px solid var(--line); padding-top: 16px; }
+.labkeys b { display: block; font: 600 22px "IBM Plex Mono", monospace; }
+.labkeys span { font-size: 13.5px; color: var(--mute); }
+.labside { display: grid; gap: 12px; align-content: start; }
+.labitem { display: block; text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; }
+.labitem:hover { border-color: var(--navy); }
+.labitem .tag { font: 600 12.5px "IBM Plex Mono", monospace; color: var(--navy); }
+.labitem h3 { margin: 4px 0 6px; }
+.labitem p { font-size: 14.5px; color: #334155; }
+.labitem .go { display: inline-block; margin-top: 8px; font-weight: 600; color: var(--navy); font-size: 14.5px; }
+@media (max-width: 900px) { .lab { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .mk span { font-size: 11.5px; } .labkeys { grid-template-columns: 1fr; } }
+
+/* ── 9. 출처 · 푸터 ──────────────────────────── */
+.refs { margin: 0; padding-left: 1.4em; display: grid; gap: 8px; font-size: 14.5px; color: #334155; max-width: 90ch; }
+.refs li { padding-left: 4px; }
+.refs li:target { background: var(--hv-2); outline: 1px solid var(--hv); }
+footer { border-top: 1px solid var(--line); background: var(--panel); padding: 40px 0 48px; font-size: 14px; color: var(--mute); }
+.fgrid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px; }
+footer h4 { margin: 0 0 8px; color: var(--ink); font-size: 15px; }
+footer p { margin-bottom: 6px; max-width: 66ch; }
+.fnav { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.fnav a { min-height: 36px; display: inline-flex; align-items: center; color: var(--ink); }
+@media (max-width: 760px) { .fgrid { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
