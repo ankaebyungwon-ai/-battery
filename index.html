@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="폐배터리가 만들어지고 다시 원료로 돌아오는 순환 여정 애니메이션">
+<meta name="theme-color" content="#2D6A4F">
+<title>RE:CELL — 배터리 순환 여정</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="index">
+<a class="skip" href="#main">본문 바로가기</a>
+<header>
+  <div class="wrap hd">
+    <a class="logo" href="index.html" aria-label="RE:CELL 홈"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="9" y="8" width="20" height="28" rx="5" fill="#2D6A4F"/><rect x="15" y="4" width="8" height="5" rx="2" fill="#2D6A4F"/><rect x="13" y="24" width="12" height="8" rx="2" fill="#95D5B2"/><path d="M27 20c7-9 13-6 13-6s-1 9-11 10c-1 0-2-1-2-4z" fill="#FFD60A"/></svg><span><b>RE:CELL</b><small>BATTERY AFTERLIFE</small></span></a>
+    <nav class="main" id="mainNav" aria-label="주 메뉴"><a href="process.html">순환 공정</a><a href="companies.html">기업 사례</a><a href="topics.html">20개 주제</a><a href="lab.html">BMS 3D 회로</a><a href="references.html">참고자료</a><a href="about.html">소개</a></nav>
+    <a class="btn sun" href="index.html#journey">순환 여정 ▶</a>
+    <button class="mbtn" id="mbtn" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="메뉴 열기"><i></i><i></i><i></i></button>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top" aria-labelledby="heroT">
+  <div class="wrap">
+    <div class="htop">
+      <div>
+        <div class="kick"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 15C3 6 10 3 17 3c0 8-4 14-12 14" fill="#95D5B2"/><path d="M3 17c4-5 7-8 11-11" stroke="#2D6A4F" stroke-width="1.6" fill="none"/></svg>BATTERY AFTERLIFE · 순환 여정 11단계</div>
+        <h1 id="heroT">배터리의 두 번째 삶을<br><span>함께 만들어 갑니다</span></h1>
+      </div>
+      <div>
+        <p class="lead">광산에서 캐낸 원료가 전기차 배터리가 되고, 다시 원료로 돌아오기까지. 실제 재활용 기업들이 공개한 공정을 바탕으로 한 장의 풍경으로 따라가 보세요.</p>
+        <div class="ctas"><a class="btn sun" href="#journey">▶ 여정 처음부터</a><a class="btn line" href="process.html">순환 공정 자세히</a></div>
+      </div>
+    </div>
+    <div class="stage" id="journey" role="region" aria-roledescription="애니메이션" aria-label="배터리 순환 여정">
+      <div class="view">
+        <svg id="pano" aria-hidden="true" preserveAspectRatio="xMidYMid slice"></svg>
+        <div class="sunb" aria-hidden="true"></div>
+        <div class="sctl">
+          <button type="button" id="sPrev" aria-label="이전 단계"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button type="button" id="sPlay" aria-label="일시정지"><svg viewBox="0 0 24 24" id="sPlayI"><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor"/></svg></button>
+          <button type="button" id="sNext" aria-label="다음 단계"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+      <div class="cap" id="cap" aria-live="polite"></div>
+    </div>
+    <div class="tline" id="tline"></div>
+    <p class="note">풍경은 직접 그린 그림이며, 단계 설명과 사례는 <a href="references.html">참고자료</a>의 논문·정부 자료·기업 공개 자료를 따랐습니다. 기업 수치는 각 기업의 발표 기준이에요.</p>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0" aria-labelledby="impT">
+  <div class="wrap">
+    <div class="kick"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="#FFD60A"/></svg>숫자로 보는 지금</div>
+    <h2 id="impT" style="margin-bottom:24px">폐배터리는 곧 쏟아지고, 규칙은 이미 정해졌습니다</h2>
+    <div class="impact" id="impact"></div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0" aria-labelledby="pgT">
+  <div class="wrap">
+    <div class="kick"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 15C3 6 10 3 17 3c0 8-4 14-12 14" fill="#95D5B2"/></svg>둘러보기</div>
+    <h2 id="pgT" style="margin-bottom:24px">한 장씩 넘겨 보세요</h2>
+    <div class="pcards"><a class="pcard" href="process.html"><span class="pn o">01</span><h3>순환 공정</h3><p>11단계를 한 장씩 자세히, 재활용 방식 비교까지</p><span class="go">페이지 보기 →</span></a><a class="pcard" href="companies.html"><span class="pn o">02</span><h3>기업 사례</h3><p>Redwood · Li-Cycle · Umicore · 성일하이텍 · Ascend · ABR</p><span class="go">페이지 보기 →</span></a><a class="pcard" href="topics.html"><span class="pn o">03</span><h3>20개 주제</h3><p>처리 경로 · 지원 기술 · 평가 · 설계</p><span class="go">페이지 보기 →</span></a><a class="pcard" href="lab.html"><span class="pn o">04</span><h3>BMS 3D 회로</h3><p>우리가 만든 ESP32 배터리 관리 회로</p><span class="go">페이지 보기 →</span></a><a class="pcard" href="references.html"><span class="pn o">05</span><h3>참고자료</h3><p>논문·정부·국제 기준 37건</p><span class="go">페이지 보기 →</span></a><a class="pcard" href="about.html"><span class="pn o">06</span><h3>사이트 소개</h3><p>만든 이유와 출처 원칙</p><span class="go">페이지 보기 →</span></a></div>
+  </div>
+</section>
+
+</main>
+<nav class="pager wrap" aria-label="페이지 넘기기"><span></span><a rel="next" class="next" href="process.html"><small>다음 →</small><b>순환 공정</b></a></nav>
+<footer>
+  <div class="wrap fgrid">
+    <div>
+      <a class="logo" href="index.html" aria-label="RE:CELL 홈"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="9" y="8" width="20" height="28" rx="5" fill="#95D5B2"/><rect x="15" y="4" width="8" height="5" rx="2" fill="#95D5B2"/><rect x="13" y="24" width="12" height="8" rx="2" fill="#2D6A4F"/><path d="M27 20c7-9 13-6 13-6s-1 9-11 10c-1 0-2-1-2-4z" fill="#FFD60A"/></svg><span><b>RE:CELL</b><small>BATTERY AFTERLIFE</small></span></a>
+      <h4 style="margin-top:18px">학생 연구 · 비영리 교육 목적</h4>
+      <p>폐배터리 활용방안 조사 과제를 웹으로 정리한 사이트입니다. 언급된 기업과 관련이 없으며, 기업명은 사실 설명을 위해서만 썼고 로고는 쓰지 않았습니다. 모든 그림과 애니메이션은 직접 그렸습니다.</p>
+    </div>
+    <div class="fcol"><h4>둘러보기</h4><a href="index.html">홈 · 순환 여정</a><a href="process.html">순환 공정</a><a href="companies.html">기업 사례</a><a href="topics.html">20개 주제</a></div>
+    <div class="fcol"><h4>더 보기</h4><a href="lab.html">BMS 3D 회로</a><a href="references.html">참고자료</a><a href="about.html">사이트 소개</a></div>
+  </div>
+  <div class="wrap fbot">© 2026 RE:CELL · Battery Recycling Research Project</div>
+</footer>
+<script src="assets/common.js"></script>
+<script src="assets/pano.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/journey.js"></script>
+</body>
+</html>
